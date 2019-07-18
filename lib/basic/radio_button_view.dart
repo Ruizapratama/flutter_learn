@@ -1,0 +1,108 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
+
+void main() {
+  runApp(MaterialApp(
+    title: "Flutter Radio",
+    debugShowCheckedModeBanner: false,
+    home: MyApp(),
+  ));
+}
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  int _rgProgramming = -1;
+  String _selectedValue;
+
+  final List<RadioGroup> _programmingList = [
+    RadioGroup(index: 1, text: "Kotlin"),
+    RadioGroup(index: 2, text: "Swift"),
+    RadioGroup(index: 3, text: "Flutter"),
+    RadioGroup(index: 4, text: "Java"),
+    RadioGroup(index: 5, text: "React Native"),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("Flutter Radio"),
+      ),
+      body: Container(
+        padding: EdgeInsets.all(18.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text("Apa bahasa pemrograman yang kamu suka ?"),
+            _buildRadioButton(context),
+            Text("Kamu menyukai pemrograman :"),
+            SizedBox(height: 8.0,),
+            Center(
+              child: Text(
+                _selectedValue == null ? "Belum memilih" : _selectedValue,
+                style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // widget radio
+  Widget _buildRadioButton(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: _programmingList.map((programming) => RadioListTile(
+        title: Text(programming.text),
+        value: programming.index,
+        groupValue: _rgProgramming,
+        controlAffinity: ListTileControlAffinity.trailing,
+        dense: true,
+        onChanged: (value) {
+          setState(() {
+            _rgProgramming = value;
+            _selectedValue = programming.text;
+          });
+        },
+      )).toList(),
+    );
+  }
+}
+
+// widget radio list tile
+// Widget _buildRadioButton() {
+//     return Column(
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: _programmingList.map((programming) => RadioListTile(
+//         title: Text(programming.text),
+//         value: programming.index,
+//         groupValue: _rgProgramming,
+//         controlAffinity: ListTileControlAffinity.trailing,
+//         dense: true,
+//         onChanged: (value) {
+//           setState(() {
+//             _rgProgramming = value;
+//             _selectedValue = programming.text;
+//           });
+//         },
+//       )).toList(),
+//     );
+//   }
+// }
+
+class RadioGroup {
+  final int index;
+  final String text;
+  RadioGroup({this.index, this.text});
+}
