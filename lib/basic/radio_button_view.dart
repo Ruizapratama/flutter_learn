@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -60,7 +58,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   // widget radio
-  Widget _buildRadioButton(BuildContext context) {
+  Widget _buildRadioButton() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: _programmingList.map((programming) => RadioListTile(
