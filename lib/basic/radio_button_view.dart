@@ -39,7 +39,7 @@ class _MyAppState extends State<MyApp> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text("Apa bahasa pemrograman yang kamu suka ?"),
-            _buildRadioButton(context),
+            _buildRadioButton(),
             Text("Kamu menyukai pemrograman :"),
             SizedBox(height: 8.0,),
             Center(
